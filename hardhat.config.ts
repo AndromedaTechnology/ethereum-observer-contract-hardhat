@@ -22,13 +22,24 @@ task("accounts", "Prints the list of accounts", async (taskArgs, hre) => {
 // You need to export an object to set up your config
 // Go to https://hardhat.org/config/ to learn more
 
+/**
+ * Accounts
+ */
+const accounts: Array<string> = [];
+// Master, Minter
+if (process.env.PRIVATE_KEY !== undefined) {
+  accounts.push(process.env.PRIVATE_KEY);
+}
+// Used for testing contract access controls
+if (process.env.PRIVATE_KEY_GUEST !== undefined) {
+  accounts.push(process.env.PRIVATE_KEY_GUEST);
+}
 const config: HardhatUserConfig = {
   solidity: "0.8.4",
   networks: {
     ropsten: {
       url: process.env.ROPSTEN_URL || "",
-      accounts:
-        process.env.PRIVATE_KEY !== undefined ? [process.env.PRIVATE_KEY] : [],
+      accounts,
     },
   },
   gasReporter: {
