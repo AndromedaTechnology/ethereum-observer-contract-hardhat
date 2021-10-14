@@ -1,6 +1,6 @@
-<h1 align="center">Ethereum Observer - Contract - Hardhat</h1>
+<h1 align="center">Ethereum Observer - Smart Contract - Hardhat, TypeScript</h1>
 <p align="center">
-  <a href="https://ethereum-observer-api.andromeda.technology"><img src="./storage/static/hero.jpg"  alt="Ethereum Observer - Contract - Hardhat" /></a>
+  <a href="https://ethereum-observer-api.andromeda.technology"><img src="./storage/img/hero.png"  alt="Ethereum Observer - Contract - Hardhat" /></a>
   <br />
   <br />
   <a href="https://ethereum-observer-api.andromeda.technology">Simple contract to store Ethereum Observer Summary</a>
@@ -8,7 +8,9 @@
   <a href="https://ethereum-observer-api.andromeda.technology">https://ethereum-observer-api.andromeda.technology</a>
 </p>
 
-Simple contract to store Ethereum Observer Summary.
+Simple `Ethereum Smart Contract` that stores a `Daily Summary` of **[Ethereum Observer API](https://github.com/AndromedaTechnology/ethereum-observer-api)**.
+
+Use it as a scalable `Smart Contract Development boilerplate` and/or a learning resource.
 
 # 1. Project
 
@@ -19,9 +21,14 @@ Simple contract to store Ethereum Observer Summary.
 
 # 2. Contract
 
-- Method: addSummary(totalGas,totalBlocks) - available only to the contract creator,
-- Method: getSummary(day) - available to anyone,
-- Has Access control for Write access.
+- Method: `addSummary(dayId, blocks, gas)`,
+  - **available to contract creator only**,
+  - reverts the state and returns `WriteAccessForbiden` Error if not run by the contract creator,
+  - raises `SummaryAdded` Event otherwise,
+- Method: `getSummary(dayId)`
+  - available to anyone,
+- Method: `getCreator()`
+  - returns contract creator address.
 
 # 3. Technology
 
@@ -45,27 +52,39 @@ Simple contract to store Ethereum Observer Summary.
 
 Note: Private keys can be obtained by creating two (2) accounts in [MetaMask](https://metamask.io/) (e.g. in different browsers).
 
-# 5. Contract deployment
+# 5. Tests
 
-With a valid `.env` file in place, deploy your contract:
+Run `npx hardhat test`.
+
+Contract `NetworkSummary`:
+
+- Sets the proper creator address,
+- Forbids write access to non-creator,
+- Stores summary for the day and returns it.
+
+# 6. Deployment
+
+With a valid `.env` file in place, to deploy your contract run:
 
 ```shell
-hardhat run --network ropsten scripts/deploy.ts
+npx hardhat run --network ropsten scripts/deploy.ts
 ```
 
-Then, copy the deployment address and paste it in to replace `DEPLOYED_CONTRACT_ADDRESS` in the verification section (check `5.1.`).
+Then, copy the deployment address and paste it in to replace `DEPLOYED_CONTRACT_ADDRESS` in the verification section (check `6.1.`).
 
-## 5.1. Contract deployment verification - Etherscan
+## 6.1. Deployment verification - Etherscan
 
-To try out Etherscan verification, you first need to deploy a contract to an Ethereum network that's supported by Etherscan, such as Ropsten (check `5.`).
+To try out Etherscan verification, you first need to deploy a contract to an Ethereum network that's supported by Etherscan, such as Ropsten (check `6.`).
 
 ```shell
 npx hardhat verify --network ropsten DEPLOYED_CONTRACT_ADDRESS "Hello, Hardhat!"
 ```
 
-# 6. Tasks
+# 7. Tasks
 
-Try running some of the following tasks:
+Previous sections covered most of the commands you should try out, to get up and running quickly and get a sense of what is going on.
+
+If you wish to dive deeper, check out the available tasks:
 
 ```shell
 npx hardhat accounts # built-in Hardhat network accounts
@@ -87,20 +106,35 @@ npx solhint 'contracts/**/*.sol'
 npx solhint 'contracts/**/*.sol' --fix
 ```
 
-# 7. Performance optimizations
+# 8. Performance
 
-For faster runs of your tests and scripts, consider skipping ts-node's type checking by setting the environment variable `TS_NODE_TRANSPILE_ONLY` to `1` in hardhat's environment. For more details see [the documentation](https://hardhat.org/guides/typescript.html#performance-optimizations).
+For faster runs of your tests and scripts, consider skipping ts-node's type checking by setting the environment variable `TS_NODE_TRANSPILE_ONLY` to `1` in hardhat's environment.
 
-# 8. Social
+For more details see [the documentation](https://hardhat.org/guides/typescript.html#performance-optimizations).
+
+# 9. Social
 
 Andromeda
 
 - [Medium](https://medium.com/andromeda-technology)
 - [Twitter](https://twitter.com/andromeda_node)
 
-# 9. Related
+# 10. Rest
 
-[🚀 FireStarter API - Progressive Startup API Boilerplate](https://github.com/moltouni/firestarter-api)
+Hero image source: [Hardhat.org](https://hardhat.org).
+
+# 11. Related
+
+[🔭 Ethereum Observer API - Simple tracker for Ethereum Network](https://github.com/AndromedaTechnology/ethereum-observer-api)
+
+- Simple block and transaction tracker for Ethereum network,
+- TypeScript,
+- Koa.js,
+- MongoDB,
+- Jest,
+- Docker.
+
+[🚀 FireStarter API - Progressive Startup API Boilerplate](https://github.com/AndromedaTechnology/firestarter-api)
 
 - Easy to extend, Progressive and Scalable API boilerplate to power your startup,
 - TypeScript,
@@ -115,8 +149,9 @@ Andromeda
 - Healthiest version of you,
 - Gamified,
 - Anonymous and open source.
+- TypeScript, Koa.js, Vue.js, MongoDB, Jest.
 
-# 10. Contribute
+# 12. Contribute
 
 Check [Self-Aware Software Artisan](http://selfawaresoftwareartisan.com) before contributing.
 
