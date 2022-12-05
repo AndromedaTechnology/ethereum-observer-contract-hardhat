@@ -156,6 +156,9 @@ Hero image source: [Hardhat.org](https://hardhat.org).
 Check [Self-Aware Software Artisan](http://selfawaresoftwareartisan.com) before contributing.
 
 <br/>
+<h5 align="center">
+  Started in <a href="https://en.wikipedia.org/wiki/Croatia">Europe, Croatia 🇭🇷</a>
+</h5>
 <h3 align="center">
   Crafted with ❤️ <br />
   by contributors around the 🌍 World and <a href="https://andromeda.technology/">🌌 Andromeda</a>.
